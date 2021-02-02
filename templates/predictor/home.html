@@ -1,1 +1,104 @@
-<h2>hello</h2>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Custom stylesheet -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Favicon icon -->
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon" >
+
+    <title>Heart Disease Prediction</title>
+</head>
+<body>
+    <div class="container shadow">
+        <h1>Heart Disease Prediction</h1>
+        <form action="{% url 'result' %}" method="post">
+            {% csrf_token %}
+            <div class="form-control">
+                <label for="age">Age in Years</label>
+                <input type="number" name="age" id="age" min="0" max="100" required>
+            </div>
+            <div class="form-control">
+                <label for="sex">Sex</label>
+                <select name="sex" id="sex" required>
+                    <option value="0">Female</option>
+                    <option value="1">Male</option>
+                </select>
+            </div>
+            <div class="form-control">
+                <label for="cp">Chest Pain Type</label>
+                <select name="cp" id="cp" required>
+                    <option value="0">Typical Angina</option>
+                    <option value="1">Atypical Angina</option>
+                    <option value="2">Non-Anginal Pain</option>
+                    <option value="3">Asymptomatic</option>
+                </select>
+            </div>
+            <div class="form-control">
+                <label for="trestbps">Resting Blood Pressure</label>
+                <input type="number" name="trestbps" id="trestbps" min="80" max="250" required>
+            </div>
+            <div class="form-control">
+                <label for="chol">Serum Cholestrol in mg/dl</label>
+                <input type="number" name="chol" id="chol" min="120" max="580" required>
+            </div>
+            <div class="form-control">
+                <label for="fbs">Fasting Blood Sugar > 120 mg/dl</label>
+                <select name="fbs" id="fbs" required>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+            <div class="form-control">
+                <label for="restecg">Resting Electrocardiographic Results</label>
+                <select name="restecg" id="restecg" required>
+                    <option value="0">Normal</option>
+                    <option value="1">Having ST-T</option>
+                    <option value="2">hypertrophy</option>
+                </select>
+            </div>
+            <div class="form-control">
+                <label for="thalach">Maximum Heart Rate Achieved</label>
+                <input type="number" name="thalach" id="thalach" min="60" max="210" required>
+            </div>
+            <div class="form-control">
+                <label for="exang">Exercise Induced Angina</label>
+                <select name="exang" id="exang" required>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+            <div class="form-control">
+                <label for="oldpeak">ST depression induced by exercise</label>
+                <input type="number" name="oldpeak" id="oldpeak" min="0" max="7.5" step="0.1" required>
+            </div>
+            <div class="form-control">
+                <label for="slope">Slope of peak exercise ST segment</label>
+                <select name="slope" id="slope" required>
+                    <option value="0">Upsloping</option>
+                    <option value="1">Flat</option>
+                    <option value="2">Downsloping</option>
+                </select>
+            </div>
+            <div class="form-control">
+                <label for="ca">vessels colored by flourosopy</label>
+                <select name="ca" id="ca" required>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </div>
+            <button class="btn submit">Predict</button>
+        </form>
+    </div>
+</body>
+</html>
